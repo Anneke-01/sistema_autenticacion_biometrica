@@ -3,6 +3,8 @@ __pycache__/
 *.py[codz]
 *$py.class
 
+flask_session
+
 # C extensions
 *.so
 
@@ -143,6 +145,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+.flaskenv
 
 # Spyder project settings
 .spyderproject
