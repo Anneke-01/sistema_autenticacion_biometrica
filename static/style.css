@@ -1,68 +1,52 @@
-    
-   html, body {
-      height: 100%;
-      margin: 0;
-    }
-    body {
-     display: flex;
-      justify-content: center;  /* Centrar horizontal */
-      align-items: center;      /* Centrar vertical */
-      height: 100vh;            /* Vista completa vertical */
-      background-color: #142B6F; /* Fondo azul */
-      font-family: Arial, sans-serif;
-      font-size: medium;
-    }
+html,body {
+  height: 100%;
+  width: 100%;
+  overflow-y: scroll;
+}
 
-    .login-container {
-      background-color: white;
-      padding: 40px 30px;
-      border-radius: 12px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-      width: 100%;
-      max-width: 400px;
-      text-align: center;
-    }
 
-    
+body {
+  overflow-x: hidden;
+}
 
-    .title-form {
-      font-size: 1.5rem;
-      font-weight: 700;
-      margin-bottom: 30px;
-      color: #142B6F;
-    }
-    .form-control {
-      font-size: 1.1rem;
-      padding: 12px 15px;
-    }
-    .btn-login {
-      width: 100%;
-      font-size: 1.2rem;
-      padding: 10px;
-      margin-top: 20px;
-    }
-    .message {
-      margin-top: 20px;
-      font-size: 1rem;
-      color: #142B6F;
-    }
-    .message a {
-      color: #ee5b5b;
-      text-decoration: none;
-      font-weight: 600;
-    }
-    .message a:hover {
-      text-decoration: underline;
-    }
+.text-uppercase {
+  margin-top: 6vh;
+  text-align: center;
+  line-height: 1.1;
+  font-family: Arial, sans-serif;
+  font-size: x-large;
+  padding-bottom: 3vh;
+}
 
-    .btn-custom {
+.btn-custom {
   background-color: #003485;
   color: white;
   border-color: #003485;
 }
 
 .btn-custom:hover {
-  background-color: #011e46; /* un azul más oscuro para hover */
+  background-color: #011e46;
   border-color: #002860;
   color: white;
+}
+
+
+.custom-navbar {
+  background-color: #003485;
+}
+
+.custom-navbar .navbar-brand,
+.custom-navbar .nav-link {
+  color: #ffffff;
+}
+
+.custom-navbar .nav-link:hover {
+  color: #dbe6ff;
+}
+
+
+.nav-logo {
+  height: 40px; /* Adjust based on your nav height */
+  width: auto;  /* Maintains aspect ratio */
+  display: block;
 }
