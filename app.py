@@ -36,10 +36,15 @@ def dashboard():
     session.clear()
     return render_template("dashboard.html")
 
+@app.route("/estudiantes", methods=["GET", "POST"])
+def estudiantes():
+    session.clear()
+    return render_template("estudiantes.html")
+
 @app.route("/logout")
 def logout():
     session.clear()
-    return redirect("/")
+    return render_template("logout.html")
 
 if __name__ == '__main__':
     app.run()
