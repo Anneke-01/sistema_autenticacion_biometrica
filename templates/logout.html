@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Inicio de sesión
+{% endblock %}
+
+{% block main %}
+<form action="/logout" method="post">
+  <section class="min-vh-100 d-flex align-items-center justify-content-center" style="background-color: #003485;">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+          <div class="card shadow-lg" style="border-radius: 1rem;">
+            <div class="card-body p-5 text-center">
+                <img src="{{ url_for('static', filename='/images/robot.png') }}">
+              <h2 class="fw-light mb-2 text-uppercase">Nos vemos luego!</h2>
+              
+              <a href="/" class="btn btn-custom btn-login btn-lg w-100 mb-3">
+                <i class="fa-solid fa-arrow-right-to-bracket"></i> Iniciar sesión
+                </a>   
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</form>
+
+{% endblock %}
