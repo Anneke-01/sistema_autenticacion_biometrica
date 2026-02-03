@@ -8,6 +8,10 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 from werkzeug.security import check_password_hash, generate_password_hash
 from werkzeug.exceptions import default_exceptions
+from sqlalchemy import text, select
+
+
+from helpers import pagination
 
 app = Flask(__name__)
 app.debug = True
@@ -27,6 +31,8 @@ engine = create_engine(os.getenv("DATABASE_URL"))
 db = scoped_session(sessionmaker(bind=engine))
 
 
+headings = ("No.", "Nombre", "Apellido","Usuario", "Última modif.", "Acciones")
+
 @app.route("/", methods=["GET", "POST"])
 def index():
     return render_template("login.html")
@@ -40,6 +46,39 @@ def dashboard():
 def estudiantes():
     session.clear()
     return render_template("estudiantes.html")
+
+@app.route("/configuracion/usuarios-sistema", methods=["GET"])
+def usuarios_sistema():
+    count_query = """
+        SELECT COUNT(*)
+        FROM administrador
+        WHERE activo = true
+    """
+
+    data_query = """
+        SELECT 
+            ROW_NUMBER() OVER (
+                ORDER BY COALESCE(f_modif, f_creacion) DESC
+            ) AS row,
+            nombres,
+            apellidos,
+            usuario,
+            TO_CHAR(
+                COALESCE(f_modif, f_creacion),
+                'YYYY-MM-DD HH24:MI:SS'
+            ) AS fecha,
+            idAdmin
+        FROM administrador
+        WHERE activo = true
+        ORDER BY COALESCE(f_modif, f_creacion) DESC
+        LIMIT :limit OFFSET :offset
+    """
+
+    usuarios, pager = pagination(db,count_query, data_query)
+
+    print(usuarios)
+    return render_template("usuarios-sistema.html",headings=headings,usuarios=usuarios,pagination=pager)
+
 
 @app.route("/logout")
 def logout():

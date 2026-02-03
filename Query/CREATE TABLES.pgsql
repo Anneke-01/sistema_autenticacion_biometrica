@@ -3,14 +3,43 @@ CREATE TABLE administrador(
     nombres VARCHAR(150) NOT NULL,
     apellidos VARCHAR(150) NOT NULL,
     usuario VARCHAR(50) NOT NULL,
-    contra VARCHAR NOT NULL
+    contra VARCHAR NOT NULL,
+    f_creacion TIMESTAMPTZ,
+    us_creacion INT,
+    f_modif TIMESTAMPTZ,
+    us_modif INT,
+    superuser BOOLEAN NOT NULL DEFAULT FALSE
 )
 
 ALTER TABLE administrador
 ADD CONSTRAINT administrador_usuario_unique UNIQUE (usuario);
 
 ALTER TABLE administrador
+ADD COLUMN Activo BOOLEAN NOT NULL DEFAULT TRUE;
+
+
+INSERT INTO administrador (
+    nombres,
+    apellidos,
+    usuario,
+    contra,
+    f_creacion,
+    us_creacion,
+    f_modif,
+    us_modif,
+    superuser
+) VALUES
+('Ana María', 'Gómez López', 'agomez23', '12345Ana$', NOW(), 1, NULL, NULL, TRUE),
+('Carlos', 'Pérez Ruiz', 'cperez23', 'Carlo$2024', NOW(), 1, NULL, NULL, FALSE),
+('Lucía', 'Martínez Solís', 'lmartinez23', 'Lucia#88', NOW(), 1, NULL, NULL, FALSE),
+('Jorge', 'Hernández Díaz', 'jhernandez23', 'Jh@admin', NOW(), 1, NULL, NULL, FALSE),
+('Sofía', 'Castillo Vega', 'scastillo23', 'Sofi_2024', NOW(), 1, NULL, NULL, FALSE);
+
+
+
+/*ALTER TABLE administrador
 ADD COLUMN superuser BOOLEAN NOT NULL DEFAULT FALSE;
+*/
 
 
 CREATE TABLE estudiante(
