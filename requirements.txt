@@ -5,6 +5,7 @@ charset-normalizer==3.4.4
 click==8.3.1
 colorama==0.4.6
 Flask==3.1.2
+flask-paginate==2024.4.12
 Flask-Session==0.8.0
 Flask-SQLAlchemy==3.1.1
 greenlet==3.3.0

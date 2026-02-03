@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Estudiantes
+{% endblock %}
+
+{% block navbar %}
+{% include "navbar.html" %}
+{% endblock %}
+
+
+{% block main %}
+<div class="container" style="margin-top: 5vh;">
+  <table class="table caption-top">
+    <caption><span>Usuarios del sistema</span>
+      <a class="btn btn-outline-success" data-bs-toggle="tooltip" data-bs-placement="bottom"
+        title="Agregar usuario al sistema"><i class="fa-solid fa-plus"></i></a>
+    </caption>
+    <thead>
+      <tr>
+        {% for header in headings %}
+        <th> {{ header }}</th>
+        {% endfor %}
+      </tr>
+    </thead>
+    <tbody class="table-group-divider">
+      {% for user in usuarios %}
+      <tr>
+        <td>{{ user.row }}</td>
+        <td>{{ user.nombres }}</td>
+        <td>{{ user.apellidos }}</td>
+        <td>{{ user.usuario }}</td>
+        <td>{{ user.fecha }}</td>
+        <td>
+          <a class="btn btn-outline-primary" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Editar usuario"
+            style="padding: 0.5vh;"><i class="fa-solid fa-pen-to-square"></i></a>
+          <a class="btn btn-outline-danger" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Eliminar usuario"
+            style="padding: 0.5vh;"><i class="fa-solid fa-trash"></i></a>
+        </td>
+        {% endfor %}
+    </tbody>
+  </table>
+
+   <div class="row justify-content-md-center">
+        <div class="col-md-auto">
+          <span>
+            {{ pagination.info }}
+            <hr />
+          </span>
+          {{ pagination.links }}
+        </div>
+      </div>
+</div>
+
+{% endblock %}
